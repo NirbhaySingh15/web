@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal for Shalu ❤️</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      height: 120px;
+      position: relative;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #28a745;
+      color: white;
+    }
+
+    #noBtn {
+      background: #dc3545;
+      color: white;
+      position: absolute;
+      left: 120px;
+      top: 50px;
+    }
+
+    .celebration {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+    }
+
+    .celebration h1 {
+      font-size: 40px;
+      color: #ffd700;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-100vh); }
+      to { transform: translateY(100vh); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Hey Shalu ❤️</h1>
+    <p>
+      Will you be my Valentine 💝  
+      <br>and marry me someday? 💍
+    </p>
+
+    <div class="buttons">
+      <button id="yesBtn">YES 😍</button>
+      <button id="noBtn">NO 🙈</button>
+    </div>
+
+    <p style="margin-top:15px;font-weight:bold;">— Nirbhay</p>
+  </div>
+
+  <div class="celebration" id="celebration">
+    <h1>🎉 SHE SAID YES! 🎉</h1>
+    <p style="font-size:22px;">Shalu ❤️ Nirbhay forever</p>
+  </div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const celebration = document.getElementById("celebration");
+
+  // MOBILE & DESKTOP: NO button runs away on click
+  noBtn.addEventListener("click", () => {
+    noBtn.style.visibility = "hidden";
+
+    setTimeout(() => {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      noBtn.style.visibility = "visible";
+    }, 300);
+  });
+
+  // YES celebration
+  yesBtn.addEventListener("click", () => {
+    celebration.style.display = "flex";
+    startConfetti();
+  });
+
+  function startConfetti() {
+    for (let i = 0; i < 100; i++) {
+      const c = document.createElement("div");
+      c.className = "confetti";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.backgroundColor = `hsl(${Math.random()*360},100%,50%)`;
+      c.style.animationDuration = (2 + Math.random()*3) + "s";
+      document.body.appendChild(c);
+    }
+  }
+</script>
+
+</body>
+</html>
